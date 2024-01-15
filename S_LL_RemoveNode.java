@@ -10,15 +10,18 @@
  */
 class Solution {
     public ListNode removeElements(ListNode head, int val) {
-        if (head == null) {
+         if (head == null) {
             return null;
         }
-        ListNode dummy = new ListNode(0);
-        dummy.next = head;
 
-        ListNode current = dummy;
+        // Remove nodes with the specified value from the beginning of the list
+        while (head != null && head.val == val) {
+            head = head.next;
+        }
 
-        while (current.next != null) {
+        ListNode current = head;
+
+        while (current != null && current.next != null) {
             if (current.next.val == val) {
                 // Skip the node with the specified value
                 current.next = current.next.next;
@@ -28,7 +31,7 @@ class Solution {
             }
         }
 
-        return dummy.next;
-    
+        return head;
     }
+
 }
