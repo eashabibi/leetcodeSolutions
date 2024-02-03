@@ -1,0 +1,26 @@
+class Solution {
+    public List<Integer> sequentialDigits(int low, int high) {
+        List<Integer> result = new ArrayList<>();
+        Queue<Integer> queue = new LinkedList<>();
+
+        for (int i = 1; i <= 9; i++) {
+            queue.add(i);
+        }
+
+        while (!queue.isEmpty()) {
+            int current = queue.poll();
+
+            if (current >= low && current <= high) {
+                result.add(current);
+            }
+
+            int lastDigit = current % 10;
+
+            if (lastDigit + 1 <= 9) {
+                queue.add(current * 10 + (lastDigit + 1));
+            }
+        }
+
+        return result;
+    }
+}
